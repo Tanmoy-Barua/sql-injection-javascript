@@ -7,9 +7,9 @@
 </head>
 <body>
     <form action="" method="post">
-    <label for="">Search</label>
-    <input type="text" name="search">
-    <input type="submit" name="submit">
+        <label for="">Search</label>
+        <input type="text" name="search">
+        <input type="submit" name="submit">
     </form>
 </body>
 </html>
