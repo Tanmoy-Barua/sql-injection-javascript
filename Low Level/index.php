@@ -1,3 +1,6 @@
+<?php
+  
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,15 +10,68 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
+    <!-- Fontawesome CDN-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Low level</title>
   </head>
   <body>
-  <form action="level1.php" method="post">
-        <label for="">Search</label>
-        <input type="text" name="search">
-        <input type="submit" name="Submit">
-    </form>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-8 m-auto">
+      <form action="" method="post">
+        <label for="search" class="form-label">Search</label>
+        <input type="text" name="search" class="form-control">
+        <button type="submit" class="btn btn-warning my-2 text-white" name="Submit"><i class="fas fa-search"></i> Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 m-auto bg-secondary text-white rounded">
+    <?php  
+    if( isset( $_REQUEST[ 'Submit' ] ) ) {
+      // Get input
+      $id = $_REQUEST[ 'search' ];
+  
+      // Check database
+      // $conn = new PDO("mysql:host=localhost;dbname=sqlinjec","root","");
+      // if($conn==true){
+      //     echo "Connected";
+      // }
+      $conn = new mysqli("localhost","root","","sqlinjec");
+      $query  = "SELECT firstName, lastName FROM users WHERE id = '$id';";
+      // var_dump($query);
+      $result = mysqli_query($conn,$query);
+      // var_dump($result);
+  
+  
+      // Get results
+      while( $row = mysqli_fetch_assoc( $result ) ) {
+          // Get values
+          $first = $row["firstName"];
+          $last  = $row["lastName"];
+          $level = "low level";
+  
+          // Feedback for end user
+      echo "<pre>ID: {$id}<br />First name: {$first}<br />Last Name: {$last}</pre>"; 
+        
+    }
+
+    mysqli_close($conn);
+    }
+    ?>
+    </div>
+  </div>
+    <div class="col-md-4 m-auto">
+    <?php if(isset($level)){?>
+      <h3>You are using <span class="text-danger"><?php echo $level;?> security.</span> </h3>
+      <?php }?>
+    </div>
+</div>
+  
+  
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
