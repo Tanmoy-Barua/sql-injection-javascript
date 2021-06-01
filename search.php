@@ -13,12 +13,11 @@
     </form>
 </body>
 </html>
-
 <?php
 	$conn = new PDO("mysql:host=localhost;dbname=sqlinjec","root","");
 
-	if(isset($_POST["submit"])){
-        $str = $_POST["search"];
+	if(isset($_REQUEST["submit"])){
+        $str = $_REQUEST["search"];
         $sth = $conn->prepare("SELECT * FROM `users` WHERE id='$str'");
 
         $sth->setFetchMode(PDO:: FETCH_OBJ);
@@ -47,3 +46,5 @@
     }
 
 ?>
+
+
