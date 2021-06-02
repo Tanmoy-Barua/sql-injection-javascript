@@ -1,6 +1,3 @@
-<?php
-  
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -35,12 +32,8 @@
       // Get input
       $id = $_REQUEST[ 'search' ];
   
-      // Check database
-      // $conn = new PDO("mysql:host=localhost;dbname=sqlinjec","root","");
-      // if($conn==true){
-      //     echo "Connected";
-      // }
-      $conn = new mysqli("localhost","root","","sqlinjec");
+      
+      $conn = new mysqli("localhost","root","","sqlinjec");//datbase connection
       $query  = "SELECT firstName, lastName FROM users WHERE id = '$id';";
       // var_dump($query);
       $result = mysqli_query($conn,$query);
